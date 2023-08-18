@@ -13,3 +13,9 @@ RUN_CRON_TIMINGS = ['08:00']  # Schedule to run at 8 am
 from django.template import engines
 
 DJANGO_ENGINES = engines['django']
+
+
+#Utility functions constants
+
+SEND_EMAIL_KEY_EMPLOYEE = 'employee'
+SEND_EMAIL_KEY_SUBJECT = 'subject'
