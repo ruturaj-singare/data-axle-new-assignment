@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-!*gvrz4(-o066e3s50p5y@!rgb()xl=u(1(z0gx_31&qj$u-pr
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -37,6 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #Third party apps are below
+    'django_cron',
+    #User Defined apps are below
+    'employee_app',
+    'event_template_app'
 ]
 
 MIDDLEWARE = [
@@ -100,12 +105,29 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+
+# Email Backend
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# SMTP Server Settings
+EMAIL_HOST = 'gmail.com'  
+EMAIL_PORT = 587  
+EMAIL_USE_TLS = True 
+EMAIL_USE_SSL = False 
+
+EMAIL_HOST_USER = ''  # Your email address
+EMAIL_HOST_PASSWORD = ''  # Your email password
+
+DEFAULT_FROM_EMAIL = 'ruturaj.singare@gmail.com'
+
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
