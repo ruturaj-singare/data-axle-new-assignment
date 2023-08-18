@@ -1,4 +1,5 @@
 from django.db import models
+from utils.constants import DJANGO_ENGINES
 
 class StoredTemplate(models.Model):
     template_id = models.AutoField(primary_key= True, blank= False, null= False)
@@ -7,8 +8,7 @@ class StoredTemplate(models.Model):
     content = models.TextField(max_length=1048, null= False, blank= False)
 
     def render_template(self, context):
-        from django.template import engines
-        django_engine = engines['django']
+        django_engine = DJANGO_ENGINES
         template = django_engine.from_string(self.content)
         rendered_content = template.render(context)
         return rendered_content

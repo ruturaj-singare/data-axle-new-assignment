@@ -1,16 +1,19 @@
-import logging
-logger = logging.getLogger(__name__)
 from django.utils import timezone
 from django_cron import CronJobBase, Schedule
-from utils.event_functions import send_anniversary_birthday_emails, send_birthday_emails
+from utils.event_functions import send_birthday_emails, send_work_anniversary_emails
+from utils.constants import MY_CRON_JOB_TO_SEND_EMAIL_EVENTS, RUN_CRON_TIMINGS
 
 class MyCronJob(CronJobBase):
-    RUN_AT_TIMES = ['08:00']  # Schedule to run at 8 am
+    RUN_AT_TIMES = RUN_CRON_TIMINGS
 
     schedule = Schedule(run_at_times=RUN_AT_TIMES)
-    code = 'my_cron_job_to_send_email_events'  
-
+    code = MY_CRON_JOB_TO_SEND_EMAIL_EVENTS  
+    
     def do(self):
-        print("Running my cron job...!!")
-        send_birthday_emails()
-        send_anniversary_birthday_emails()
+        try:
+            print("Running my cron job...!!")
+            send_birthday_emails()
+            send_work_anniversary_emails()
+        except Exception as e:
+            print("Exception->", e)
+
